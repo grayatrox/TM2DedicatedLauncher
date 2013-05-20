@@ -9,7 +9,7 @@
 
 
      AutoHotkey Version:    1.1.09.02
-     Program Version:       0.9.77
+     Program Version:       0.9.79
      Language:              English_United_States
      Encoding:              Unicode
      Developed Using:       WIN_7(x64)
@@ -112,7 +112,7 @@
              - This will be removed if/when the bug is fixed
         */  
         While (WinExist("ManiaPlanet")) { 
-            Msgbox,17,Dedicated Launcher, Please close ManiaPlanet
+            Msgbox,17,%pTitle%, Please close ManiaPlanet
             IfMsgbox, Cancel
                 ExitApp
         }
@@ -257,7 +257,7 @@
 		file := FileOpen("settings.txt", "w")
 		if !IsObject(file)
 		{
-			MsgBox Can't open "settings.txt" for writing.
+			MsgBox,16,%pTitle%,  Can't open "settings.txt" for writing.
 			return
 		}
 
@@ -329,8 +329,8 @@ Check_ForUpdate(_ReplaceCurrentScript = 1, _SuppressMsgBox = 0, _CallbackFunctio
 	global mUpdate, pTitle
 
 	Static Script_Name := pTitle ;Your script name
-	, Version_Number := "0.9.77" ;The script's version number
-	, Update_URL := "https://raw.github.com/grayatrox/TM2DedicatedLauncher/master/Launcher" ((A_IsCompiled)?(".exe"):(".ahk")) . ".ini" ;The URL of the version.ini file for your script
+	, Version_Number := "0.9.79" ;The script's version number
+	, Update_URL := "https://raw.github.com/grayatrox/TM2DedicatedLauncher/master/Version" ((A_IsCompiled)?(".exe"):(".ahk")) . ".ini" ;The URL of the version.ini file for your script
 	, Retry_Count := 3 ;Retry count for if/when anything goes wrong
 	
 	Random,Filler,10000000,99999999
@@ -374,7 +374,7 @@ Check_ForUpdate(_ReplaceCurrentScript = 1, _SuppressMsgBox = 0, _CallbackFunctio
 		
 		If (Update){
 			If (_SuppressMsgBox != 1 and _SuppressMsgBox != 3){
-				MsgBox,0x4,New version available,There is a new version of %Script_Name% available.`nCurrent version: %Version_Number%`nNew version: %Version%`n`nWould you like to download it now?
+				MsgBox,0x4,%pTitle% - New version available,There is a new version of %Script_Name% available.`nCurrent version: %Version_Number%`nNew version: %Version%`n`nWould you like to download it now?
 				
 				IfMsgBox,Yes
 					MsgBox_Result := 1
